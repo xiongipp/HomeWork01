@@ -8,8 +8,13 @@ public class  ButtonListener implements MouseListener, ActionListener{
     //private JPanel jp;
     private Graphics g;
     private String Command="";
-    public static Color color=Color.cyan;
+    private Shape shapearry[];
+    static int i=0;
+    public static Color color=Color.black;//设置画笔默认颜色为黑
     int x1 = 0, y1 = 0, x2 = 0, y2 = 0;
+    public static int getLen(){
+        return i;
+    }
 
     @Override
     //获得button命令
@@ -23,7 +28,6 @@ public class  ButtonListener implements MouseListener, ActionListener{
     public void mouseClicked(MouseEvent e) {
 
     }
-
 
     @Override // 按下
     public void mousePressed(MouseEvent e) {
@@ -43,12 +47,16 @@ public class  ButtonListener implements MouseListener, ActionListener{
         y2 = e.getY();
         if("直线".equals(Command)){
             g.drawLine(x1, y1, x2, y2);
+            shapearry[i++]=new Shape(x1, y1, x2, y2,"直线");
+
         }
         if("圆形".equals(Command)){
             g.drawOval(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x1-x2), Math.abs(y1-y2));
+            shapearry[i++]=new Shape(x1, y1, x2, y2,"圆形");
         }
         if("矩形".equals(Command)){
             g.drawRect(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x1-x2), Math.abs(y1-y2));
+            shapearry[i++]=new Shape(x1, y1, x2, y2,"矩形");
         }
 
     }
@@ -67,4 +75,8 @@ public class  ButtonListener implements MouseListener, ActionListener{
     public void penToListener(Graphics pen){
         g=pen;
     }
+    public void setShapeArray(Shape ShapeArray[]){
+        this.shapearry=ShapeArray;
+    }
+
 }

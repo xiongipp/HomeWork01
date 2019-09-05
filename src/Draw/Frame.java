@@ -2,18 +2,18 @@ package Draw;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.ImageObserver;
 import java.text.AttributedCharacterIterator;
 
-public class Frame{
+public class Frame extends JPanel{
 
     public static void main(String[] args) {
     Frame frame=new Frame();
     frame.showPaper();
     }
+    Shape []shapearr=new Shape[100];
     public  void showPaper(){
 
         JFrame jf= new  JFrame();
@@ -24,7 +24,7 @@ public class Frame{
         jf.setLayout(new FlowLayout());
         ButtonListener buttonListener=new ButtonListener();//创建监听对象
         //给窗口加图形选项按钮
-        String []shape={"圆形","直线","三角形","矩形"};
+        String []shape={"圆形","直线","矩形"};
         for(int i=0;i<shape.length;i++){
             JButton button=new JButton(shape[i]);
             button.addActionListener(buttonListener);
@@ -39,7 +39,7 @@ public class Frame{
         jf.add(Line);
         */
         JButton colorChooser=new JButton("选择颜色");
-       colorChooser.addActionListener(new ActionListener() {
+        colorChooser.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 ButtonListener.color=JColorChooser.showDialog(jf,"选择颜色",null);
@@ -48,12 +48,27 @@ public class Frame{
         });
         jf.add(colorChooser);//添加颜色选择按钮
         jf.addMouseListener(buttonListener);//窗口添加鼠标监听
+        jf.add(this);
         jf.setVisible(true);
         Graphics G=jf.getGraphics();
         buttonListener.penToListener(G);
-
-
+        buttonListener.setShapeArray(shapearr);
     }
+    public void paint(Graphics g){
+        System.out.println("我开始画图了");
+        super.paint(g);
+        int len=ButtonListener.getLen();
+        System.out.println(len);
+        for(int i=0;i<len;i++){
+            if(shapearr[i]!=null){
+                shapearr[i].repaint(g);
+                System.out.println(shapearr[i].toString());
+            }else {
+                break;
+            }
+        }
+    }
+
 
 
 }
