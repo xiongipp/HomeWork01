@@ -27,7 +27,7 @@ public class  ButtonListener implements MouseListener, ActionListener{
 
     @Override // 按下
     public void mousePressed(MouseEvent e) {
-        //鼠标按下的时候，分别获取起点的横纵坐标
+        //鼠标按下的时候，分别获取起点的横纵坐标,设置画笔颜色
         x1 = e.getX();
         y1 = e.getY();
         g.setColor(color);
@@ -49,7 +49,6 @@ public class  ButtonListener implements MouseListener, ActionListener{
         }
         if("矩形".equals(Command)){
             g.drawRect(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x1-x2), Math.abs(y1-y2));
-
         }
 
     }
