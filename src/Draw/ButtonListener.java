@@ -5,13 +5,13 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class  ButtonListener implements MouseListener, ActionListener{
-    //private JPanel jp;
     private Graphics g;
     private String Command="";
     private Shape shapearry[];
-    static int i=0;
+    static int i=0;//这个用来记shape[]的数量
     public static Color color=Color.black;//设置画笔默认颜色为黑
     int x1 = 0, y1 = 0, x2 = 0, y2 = 0;
+
     public static int getLen(){
         return i;
     }

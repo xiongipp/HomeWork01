@@ -6,6 +6,9 @@ import java.net.Proxy;
 public class Shape {
     private  int x1, y1, x2, y2;
     private  String typeName;
+    public String getTypeName() {
+        return typeName;
+    }
 
     public Shape(int x1, int y1, int x2, int y2, String typeName)
     {
@@ -36,6 +39,8 @@ public class Shape {
 
     }
 
-
-
+    @Override
+    public String toString() {
+        return "我重绘"+typeName;
+    }
 }
